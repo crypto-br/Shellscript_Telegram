@@ -1,0 +1,43 @@
+# Importando API
+#
+# INICIO
+# bot_script
+
+# Importando API
+source ShellBot.sh
+
+# Token do bot
+bot_token='YOUR_BOT_ID'
+
+# Inicializando o bot
+ShellBot.init --token "$bot_token"
+
+# Imprime o username do bot.
+ShellBot.username
+
+
+# default
+old=0
+
+# Monitorar
+while :
+do
+    # Testa o serviço e salva a saída em 'output'.
+    output=$(ping -c3 -W 1 url/ip monitoring)
+
+    # Atualiza o status.
+    err=$?
+
+    status=$(cat /home/pi/scripts/saidateste.txt)
+    # Se o serviço for interrompido ou restaurado, envia uma mensagem notificando o usuário.
+    (( ((err ^ old)) != 0 )) && ShellBot.sendMessage --chat_id 123456789 \
+                                                        --text "$(echo -e "<b>Status: \n$status </b>\n\n<b>Detalhes:</b>\n\n$output")" \
+                                                        --parse_mode html
+
+    # Salva o status anterior
+    old=$err
+
+    # delay
+    sleep 2
+
+done

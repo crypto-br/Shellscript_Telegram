@@ -1,0 +1,36 @@
+# Importando API
+#
+# INICIO
+# bot_script
+
+# Importando API
+source ShellBot.sh
+
+# Token do bot
+bot_token='Seu Bot Token'
+
+# Inicializando o bot
+ShellBot.init --token "$bot_token"
+
+# Imprime o username do bot.
+ShellBot.username
+
+# Monitorar
+
+nomes=("nome0" "nome1" "nome2" "nome3" "nome4" "nome5" "nome6")
+
+x=0
+while [ $x != ${#nome[@]} ]
+do
+	saida=$(cat lista_de_nomes.txt)
+	if [ grep ${nome[$x]} $saida == ${nome[$x]} ]
+	then
+		echo ${nome[$x]} " esta na lista !"
+	else
+		echo ${prtebox[$x]} " nao esta na lista !"
+		ShellBot.sendMessage --chat_id 123456789(seu chat id) \
+		           		--text "$(echo -e "<b>Nao autoriazado:  \n${nome[$x]} nao esta na lista !!! </b>")" \
+               		--parse_mode html
+	fi
+	let "x = x +1"
+done

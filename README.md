@@ -11,3 +11,4 @@ Steps: <br />
 
 
 script check_status just check url or ip with ping command (up or down).
+script Read_Array_List performs a check if the name is in the list.

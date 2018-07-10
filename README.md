@@ -10,5 +10,5 @@ Steps: <br />
 **$ ./check_status** <br /><br />
 
 
-script check_status just check url or ip with ping command (up or down).
-script Read_Array_List performs a check if the name is in the list.
+script check_status just check url or ip with ping command (up or down). <br />
+script Read_Array_List performs a check if the name is in the list.  <br />
